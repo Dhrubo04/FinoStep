@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background: #051650;
+}
+.banner{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(background.png);
+    background-size: cover;
+    background-position: center;
+}
+.navbar{
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 120px;
+    cursor: pointer;
+}
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+.navbar ul li::after{
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.navbar ul li:hover::after{
+    width: 100%;
+}
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+}
+.content h1{
+    font-size: 70px;
+    margin-top: 80px;
+}
+.content p{
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+}
+button{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+span{
+    background: #009688;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+button:hover span{
+    width: 100%;
+}
+button:hover{
+    border: none;
+}
+.about{
+    width: 100%;
+    padding: 78px 0px;
+    background-color: #061651;
+}
+.about img{
+    height: auto;
+    width: 420px;
+}
+.about-text{
+    width: 550px;
+}
+.main{
+    width: 1130px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.about-text h1{
+    color: white;
+    font-size: 80px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+.about-text p{
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 18px;
+    margin-bottom: 45px;
+}
+button{
+    background: #009688;
+    color: white;
+    text-decoration: none;
+    border: 2px solid transparent;
+    font-weight: bold;
+    padding: 13px 30px;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+button:hover{
+    background: transparent;
+    border: 2px solid #009688;
+    cursor: pointer;
+}
+
+
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.container h1 {
+    text-align: center;
+    color: #061651;
+}
+
+.plan {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.plan-card {
+    background: #f1f1f1;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.plan-card h2 {
+    color: #444;
+}
+
+.plan-card p {
+    font-size: 1rem;
+    margin: 1rem 0;
+}
+
+.plan-card button {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: #061651;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.plan-card button:hover {
+    background-color: #061651;
+}
+.plan h1{
+    text-align: center;
+    color: yellow;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-icons {
+    margin: 10px 0;
+}
+
+.footer-icons a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-icons a:hover {
+    color: #00aced;
+}
+
+.footer-text {
+    margin-top: 10px;
+    font-size: 14px;
+}
+/* Centering the language selector */
+.language-selector {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling the label */
+.language-selector label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.language-selector select {
+    width: 150px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+/* Adding hover and focus effects */
+.language-selector select:hover {
+    border-color: #888;
+    background-color: #fff;
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: hsl(47, 100%, 50%);
+    box-shadow: 0 0 5px hsl(47, 100%, 50%);
+}
+

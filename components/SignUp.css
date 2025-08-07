@@ -1,0 +1,84 @@
+body{
+    background: linear-gradient(100deg, #b986f0, #5b95f9);
+    font-family: 'Roboto' , sans-serif;
+    justify-content: center;
+    align-items: center;
+}
+.signup-box{
+    width: 360px;
+    height: 620px;
+    margin-top: 100px;
+    margin-left: 510px;
+    background-color: white;
+    border-radius: 5px;
+}
+h1{
+    text-align: center;
+    padding-top: 15px;
+}
+h4{
+    text-align: center;
+}
+form{
+    width: 300px;
+    margin-left: 20px;
+}
+form label{
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+}
+form input{
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+}
+input[type="button"]{
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2;
+    color: white;
+    font-size: 18px;
+}
+p{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+}
+.para-2{
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    margin-top: -10px;
+}
+.para-2 a{
+    color: #ffffff;
+    font-size: 20px;
+}
+select {
+    width: 105%;
+    padding: 7px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hover effect */
+select:hover {
+    border-color: #49c1a2;
+}
+
+/* Dropdown options */
+select option {
+    background-color: white;
+    color: black;
+    font-size: 16px;
+}

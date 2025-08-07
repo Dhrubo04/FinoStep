@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #0a084d;
+    color: hsl(47, 100%, 50%);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: hsl(47, 100%, 50%);
+}
+
+.logo-container:hover {
+    opacity: 0.9;
+}
+
+.logo {
+    width: 40px;
+    height: auto;
+}
+
+.brand-name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.blog-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.post {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.post img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.content {
+    padding: 15px;
+}
+
+.category {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #ff3b30;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+p {
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.meta {
+    font-size: 0.85em;
+    color: gray;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer {
+    background: #0a084d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.try-megan-button {
+    background-color: white;
+    border: none;
+    color: #007bff;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.try-megan-button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.1);
+}
+
+.try-megan-button:active {
+    background-color: #004085;
+    transform: scale(1);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.video-container:hover .play-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.play-button img {
+    width: 100px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .blog-container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,145 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0a084d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fbc531;
+}
+
+.header .vip {
+    font-size: 1em;
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.chat-container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-image: url('watermark.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: overlay;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.intro h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.intro span {
+    color: #fbc531;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message .profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.message .profile img {
+    width: 100%;
+    height: auto;
+}
+
+.message .bubble {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-size: 0.9em;
+}
+
+.message.user .bubble {
+    background-color: #fbc531;
+    color: black;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    border-top: 2px solid #ccc;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 1em;
+    border-radius: 20px;
+    outline: none;
+    background-color: #f9f9f9;
+}
+
+.input-container button {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.input-container button img {
+    width: 25px;
+    height: 25px;
+}
+
+.mic-input {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.mic-input img {
+    width: 25px;
+    height: 25px;
+}

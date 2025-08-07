@@ -1,0 +1,378 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+
+/* Header Styling */
+header {
+    background: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 40px;
+    height: auto;
+}
+
+.brand-name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.blog-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.post {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.post img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.content {
+  padding: 15px;
+}
+
+.category {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #ff3b30;
+  display: block;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+p {
+  color: #555;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.meta {
+  font-size: 0.85em;
+  color: gray;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+    background: #f4f4f4;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* ----------------------------------------------------------------Try MEGAN Button */
+.button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.try-megan-button {
+    background-color: white;
+    border: none;
+    color: #007bff;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.try-megan-button:hover {
+    background-color:  #f4f4f4;
+    transform: scale(1.1);
+}
+
+.try-megan-button:active {
+    background-color: #004085;
+    transform: scale(1);
+}
+
+.play-button {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.video-container:hover .play-button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.play-button img {
+  width: 100px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .blog-container {
+      grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/*-------------footer------------*/
+
+.footer3-footer4 {
+    gap: 80px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 80px;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+   
+  .footer3-max-width {
+    gap: 48px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+   
+  .footer3-content {
+    gap: 32px;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: center;
+  }
+   
+  .footer3-logo {
+    gap: 24px;
+    width: auto;
+    display: flex;
+    overflow: hidden;
+    flex-grow: 1;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+   
+  .footer3-image {
+    width: 77px;
+    height: 60px;
+    object-fit: cover;
+  }
+   
+  .footer3-links {
+    gap: 32px;
+    display: flex;
+    align-items: flex-start;
+  }
+   
+  .footer3-social-links {
+    gap: var(--dl-space-space-unit);
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-end;
+  }
+   
+  .footer3-credits {
+    gap: 32px;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    flex-direction: column;
+  }
+   
+  .footer3-row {
+    gap: 24px;
+    display: flex;
+    align-items: flex-start;
+  }
+   
+  .footer3-footer-links {
+    gap: 24px;
+    display: flex;
+    align-items: flex-start;
+  }
+   
+  .footer3-fragment1 {
+    display: contents;
+  }
+   
+  .footer3-text2 {
+    display: inline-block;
+  }
+   
+  .footer3-fragment2 {
+    display: contents;
+  }
+   
+  .footer3-text3 {
+    display: inline-block;
+    font-style: normal;
+    font-family: "Open Sans";
+    font-weight: 600;
+  }
+   
+  .footer3-fragment3 {
+    display: contents;
+  }
+   
+  .footer3-text4 {
+    display: inline-block;
+    font-style: normal;
+    font-family: "Open Sans";
+    font-weight: 600;
+  }
+   
+  .footer3-fragment4 {
+    display: contents;
+  }
+   
+  .footer3-text5 {
+    display: inline-block;
+  }
+   
+  .footer3-fragment5 {
+    display: contents;
+  }
+   
+  .footer3-text6 {
+    display: inline-block;
+    font-style: normal;
+    font-family: "Open Sans";
+    font-weight: 600;
+  }
+   
+  .footer3-fragment6 {
+    display: contents;
+  }
+   
+  .footer3-text7 {
+    display: inline-block;
+  }
+   
+  .footer3-fragment7 {
+    display: contents;
+  }
+   
+  .footer3-text8 {
+    display: inline-block;
+    font-style: normal;
+    font-family: "Open Sans";
+    font-weight: 600;
+  }
+   
+  .footer3-fragment8 {
+    display: contents;
+  }
+   
+  .footer3-text9 {
+    display: inline-block;
+  }
+   
+  @media(max-width: 991px) {
+    .footer3-logo {
+      width: auto;
+    }
+  }
+   
+  @media(max-width: 767px) {
+    .footer3-content {
+      flex-direction: column;
+    }
+    .footer3-row {
+      flex-direction: column;
+    }
+    .footer3-footer-links {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+   
+  @media(max-width: 479px) {
+    .footer3-max-width {
+      gap: 24px;
+    }
+    .footer3-content {
+      width: 100%;
+    }
+    .footer3-links {
+      width: 100%;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  
