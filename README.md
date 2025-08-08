@@ -112,7 +112,7 @@ pip install -r requirements.txt
 
 # Run FastAPI development server
 uvicorn main:app --reload
-
+```
 ---
 
 ## 💡 Value Proposition
@@ -142,15 +142,6 @@ Launch mobile app for offline accessibility
 Integrate gamified learning for better engagement
 
 Expand coverage to more regional languages
-
----
-
-## 📜 License
-This project is licensed under the MIT License – see the LICENSE file for details.
-
-🤝 Contributing
-We welcome contributions from developers, data scientists, and financial educators.
-Please fork the repository and create a pull request, or open an issue for discussion.
 
 ---
 
