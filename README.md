@@ -52,22 +52,23 @@ FinoStep bridges this gap by:
 ---
 
 ## 📂 Project Structure
-.qodo/
-components/
-locales/
-public/
-static/
-css/
-images/
-js/
-templates/
-UI_Images/
-venv/
-
-yaml
-Copy
-Edit
-> Additional Python dependencies are stored in `./venv/lib/python3.9/site-packages`
+```plaintext
+FinoStep/
+├── .qodo/                # Project configuration files
+├── components/           # Reusable UI components
+├── locales/              # Translation files for multi-language support
+├── public/               # Public assets accessible directly
+├── static/               # Static resources (CSS, images, JS)
+│   ├── css/              # Stylesheets
+│   ├── images/           # Image assets
+│   └── js/               # Frontend JavaScript files
+├── templates/            # HTML templates for rendering pages
+├── UI_Images/            # Screenshots and UI design assets
+├── venv/                 # Python virtual environment
+│   └── lib/              # Installed Python packages
+├── main.py               # FastAPI application entry point
+├── requirements.txt      # Python dependencies
+└── README.md             # Project documentation
 
 ---
 
@@ -110,7 +111,10 @@ pip install -r requirements.txt
 
 # Run FastAPI development server
 uvicorn main:app --reload
-💡 Value Proposition
+
+---
+
+## 💡 Value Proposition
 Empowers underserved communities with financial knowledge
 
 Bridges accessibility gaps with localized and simple interfaces
@@ -118,15 +122,18 @@ Bridges accessibility gaps with localized and simple interfaces
 Scales easily to reach large populations at low cost
 
 Improves financial decision-making with AI personalization
+---
 
-🔒 Security & Scalability
+## 🔒 Security & Scalability
 Secure – End-to-end encryption to protect sensitive data
 
 Resilient – Built with FastAPI and PostgreSQL for stability
 
 Cloud-Ready – Scalable to national-level deployment
 
-🎯 Future Roadmap
+---
+
+## 🎯 Future Roadmap
 Add voice-based financial advisory for low-literacy users
 
 Launch mobile app for offline accessibility
@@ -135,12 +142,16 @@ Integrate gamified learning for better engagement
 
 Expand coverage to more regional languages
 
-📜 License
+---
+
+## 📜 License
 This project is licensed under the MIT License – see the LICENSE file for details.
 
 🤝 Contributing
 We welcome contributions from developers, data scientists, and financial educators.
 Please fork the repository and create a pull request, or open an issue for discussion.
 
-📷 Screenshots (Coming Soon)
+---
+
+## 📷UI Screenshots
 Add UI images and dashboard previews here once available.
