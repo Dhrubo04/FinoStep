@@ -69,6 +69,7 @@ FinoStep/
 ├── main.py               # FastAPI application entry point
 ├── requirements.txt      # Python dependencies
 └── README.md             # Project documentation
+```
 
 ---
 
