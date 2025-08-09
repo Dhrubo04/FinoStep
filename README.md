@@ -44,7 +44,7 @@ FinoStep bridges this gap by:
 | **Frontend** | HTML, CSS, JavaScript |
 | **Backend**  | FastAPI |
 | **AI & NLP** | Gemini API, NLP frameworks, Speech Recognition |
-| **Database** | PostgreSQL |
+| **Database** | MySQL |
 | **Localization** | Google Translate API |
 | **Hosting** | Localhost (development), cloud-ready |
 | **Security** | End-to-end encryption |
