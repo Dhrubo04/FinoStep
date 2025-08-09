@@ -145,10 +145,12 @@ Expand coverage to more regional languages
 
 ---
 
-## 📷UI Screenshots
+## 📷 UI Screenshots
 Homepage:
+
 ![FinoStep Homepage](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png)
-![FinoStep Homepage]([https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png](https://github.com/Dhrubo04/FinoStep/blob/main/UI_Images/Homepage2.png))
-![FinoStep Homepage]([https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png](https://github.com/Dhrubo04/FinoStep/blob/main/UI_Images/FinoStep_Courses%20(2).png))
-![FinoStep Homepage]([https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png](https://github.com/Dhrubo04/FinoStep/blob/main/UI_Images/FinoStep_Blogs.png))
-![FinoStep Homepage]([[https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png](https://github.com/Dhrubo04/FinoStep/blob/main/UI_Images/FinoStep_Blogs.png](https://github.com/Dhrubo04/FinoStep/blob/main/UI_Images/FinoStep_chatbot.jpeg)))
+![Homepage 2](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/Homepage2.png)
+![Courses Page](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Courses%20(2).png)
+![Blogs Page](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Blogs.png)
+![Chatbot](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_chatbot.jpeg)
+
