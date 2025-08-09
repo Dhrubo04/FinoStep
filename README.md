@@ -146,4 +146,4 @@ Expand coverage to more regional languages
 ---
 
 ## 📷UI Screenshots
-Add UI images and dashboard previews here once available.
+![FinoStep Homepage](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png)
