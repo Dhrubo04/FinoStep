@@ -150,12 +150,15 @@ Homepage:
 
 ![FinoStep Homepage](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png)
 ![Homepage 2](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/Homepage2.png)
+
 Courses:
 
 ![Courses Page](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Courses%20(2).png)
+
 Blogs:
 
 ![Blogs Page](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Blogs.png)
+
 Chatbot:
 
 ![Chatbot](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_chatbot.jpeg)
