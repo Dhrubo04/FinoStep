@@ -99,7 +99,7 @@ We measure success through:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YourUsername/FinoStep.git
+git clone https://github.com/Dhrubo04/FinoStep.git
 cd FinoStep
 
 # Create and activate a virtual environment
