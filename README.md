@@ -146,4 +146,8 @@ Expand coverage to more regional languages
 ---
 
 ## 📷UI Screenshots
+Homepage:
+![FinoStep Homepage](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png)
+![FinoStep Homepage](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png)
+![FinoStep Homepage](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png)
 ![FinoStep Homepage](https://raw.githubusercontent.com/Dhrubo04/FinoStep/main/UI_Images/FinoStep_Homepage.png)
