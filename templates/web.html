@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="stylesheet" href="{{ url_for('templates', path='/styleweb.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <script src="{{ url_for('templates', path='/script.js') }}"></script> -->
+    <!-- <script src="script.js"></script> -->
+</head>
+<body>
+   <div class="banner">
+        <div class="navbar">
+            <img src="{{ url_for('templates', path='/logo.png') }}" class="logo">
+            <!-- <div class="language-selector">
+            <!-- <center><label for="language-dropdown" style="color: hsl(47, 100%, 50%);">Select Language:</label>
+                <select id="language-dropdown">
+                    <option value="en">English</option>
+                    <option value="es">Hindi</option>
+                    <option value="fr">Bangla</option>
+                    <option value="de">Tamil</option>
+                    <option value="hi">Telugu</option>
+                </select>
+            </center> -->
+            </div> -->
+            <ul>
+                <li><a href="#content">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li ><a href="#plan">Gold</a></li>
+            </ul>
+        </div>
+   </div> 
+
+   <div class="content">
+    <h1 style="color: hsl(47, 100%, 50%);">FinoStep</h1>
+    <h1>Secure Your Financial Future<br> Today.</h1>
+    <p><h2 style="color: hsl(47, 100%, 50%);">Unlock your financial potential with us.<br>We will guide to your financial success.</h2><br><br>A free-of-cost intuitive and engaging web platform focused on financial advisory and education, <br>designed to make complex financial concepts accessible to people worldwide, particularly in rural and underserved communities. </p>
+   <div>
+        <button type="button"><a href="{{ url_for('templates', path='/bot.html') }}"><span></span> GET STARTED</a></button>
+        <button type="button"><a href="{{ url_for('templates', path='/login.html') }}"><span></span>LOG IN</a></button>
+    </div>
+    </div>
+
+    <!-------------------------About----------------------->
+    <section class="about">
+        <div class="main">
+            <img src="{{ url_for('templates', path='/bg.png') }}">
+            <div class="about-text">
+                <h1>About Us</h1>
+                <p>The platform will deliver personalized financial tips and advice, making complex financial concepts easy to understand for people all over the globe, mainly in rural areas. Through a combination of localized content, interactive learning, and AI driven financial guidance, the platform will empower users to take control of their financial future, regardless of their background or location.</p>
+                <button type="button">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+
+<!---------------------------Plan--------------------------->
+    <div class="plan">
+        <h1>Join Our GOLD</h1>
+    </div>
+    
+    <div class="container">
+        <h1>Choose the Plan That Fits You Best</h1>
+        <div class="plan">
+            <div class="plan-card">
+                <h2>Basic Plan</h2>
+                <p>₹30.00/month</p>
+                <button>Join Now</button>
+                <p>✔ Advanced Advisory will offer personalized financial insights and strategies.</p>
+            </div>
+            <div class="plan-card">
+                <h2>Standard Plan</h2>
+                <p>₹40.00/month</p>
+                <button>Join Now</button>
+                <p>✔ Advanced Advisory will offer personalized financial insights and strategies.</p>
+                <p>✔ Portfolio Analysis  will help users evaluate and optimize their investment portfolios.</p>
+            </div>
+            <div class="plan-card">
+                <h2>Premium Plan</h2>
+                <p>₹50.00/month</p>
+                <button>Join Now</button>
+                <p>✔ Advanced Advisory will offer personalized financial insights and strategies.</p>
+                <p>✔ Portfolio Analysis  will help users evaluate and optimize their investment portfolios.</p>
+                <p>✔ Loan Analysis  assists users in evaluating and managing loans effectively.</p>
+                <p>✔ Courses will provide educational resources to improve financial literacy</p>
+            </div>
+        </div>
+    </div>
+<!-----------------------------------Footer---------------------------->
+<footer>
+    <div class="footer-icons">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <div class="footer-text">&copy; 2025 FinoStep All rights reserved.</div>
+</footer>
+
+
+</body>
+</html>

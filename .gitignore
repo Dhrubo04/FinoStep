@@ -1,9 +1,20 @@
-HELP.md
+# Git ignore rules for FinoStep
+# Files and directories that should be ignored by Git.
+
+# Local OS generated files
+.DS_Store
+._*
+
+# Python virtual environment
+venv/
+
+# Java / Maven build artifacts
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# IDE files
 ### STS ###
 .apt_generated
 .classpath
@@ -31,3 +42,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Temporary files
+tempCodeRunnerFile.py
