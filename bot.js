@@ -2,44 +2,45 @@ const chat = document.getElementById('chat');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');
 const micInput = document.querySelector('.mic-input');
-//image
-// const imageUrls = document.getElementById('image-urls').dataset;
-// const userImageUrl = imageUrls.userImage;
-// const botImageUrl = imageUrls.botImage;
-// const userImageUrl = document.getElementById('user-image').src;
-// const botImageUrl = document.getElementById('bot-image').src;
-// const languageDropdown = document.getElementById('language-dropdown');
-// const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+const recordingStatus = document.getElementById('recording-status');
+let mediaRecorder = null;
+let audioChunks = [];
+let blinkInterval = null;
 
-
+// Append message function
 const appendMessage = (message, isUser) => { 
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', isUser ? 'user' : 'bot');
 
     const profile = document.createElement('div');
     profile.classList.add('profile');
-//image
-    // const img = document.createElement('img');
-    // img.src = isUser ? userImageUrl : botImageUrl;
-    // img.src = isUser 
-    //     ? `{{ url_for('templates', path='/user.jpg') }}` 
-    //     : `{{ url_for('templates', path='/megan-profile.jpg') }}`;
-    // profile.appendChild(img);
 
     const bubble = document.createElement('div');
     bubble.classList.add('bubble');
-    bubble.textContent = message;
 
-    messageElement.appendChild(isUser ? bubble : profile);
-    messageElement.appendChild(isUser ? profile : bubble);
+    // Render markdown tables if present
+    if (message.includes('|') && message.includes('-')) {
+        bubble.innerHTML = marked.parse(message);
+    } else {
+        bubble.textContent = message;
+    }
+
+    if (isUser) {
+        messageElement.appendChild(bubble);
+        messageElement.appendChild(profile);
+    } else {
+        messageElement.appendChild(profile);
+        messageElement.appendChild(bubble);
+    }
 
     chat.appendChild(messageElement);
     chat.scrollTop = chat.scrollHeight;
 };
 
+// Send message function
 const sendMessage = async () => { 
-    const message = userInput.value;
-    if (!message.trim()) return;
+    const message = userInput.value.trim();
+    if (!message) return;
 
     appendMessage(message, true);
     userInput.value = '';
@@ -47,116 +48,95 @@ const sendMessage = async () => {
     try {
         const response = await fetch('/chat', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ message })
         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+        if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
         appendMessage(data.reply, false);
     } catch (error) {
         console.error('Error:', error);
-        appendMessage('Hi ! I am Megan, How can I help you with Finance', false);
+        appendMessage('Hi! I am Megan. How can I help you with Finance?', false);
     }
- };
+};
 
+// Event listeners for sending messages
 sendButton.addEventListener('click', sendMessage);
-userInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') sendMessage();
-});
+userInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(); });
 
-// micInput.addEventListener('click', () => { 
-//     const voiceMessage = "This is a voice message."; 
-//     appendMessage(voiceMessage, true); 
-//  });
-let mediaRecorder=null;
-let audioChunks = [];
-
+// Microphone recording
 micInput.addEventListener('click', async () => {
     if (mediaRecorder && mediaRecorder.state === "recording") {
-        mediaRecorder.stop();  
-        micInput.classList.remove('recording'); 
-        console.log("Recording stopped");
+        mediaRecorder.stop();
+        micInput.classList.remove('recording');
+        clearInterval(blinkInterval);
+        recordingStatus.textContent = '';
         return;
     }
 
     try {
-        // Request access to the microphone
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        console.log("Microphone access granted");
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+        audioChunks = [];
 
-        // Create a MediaRecorder instance for audio
-        mediaRecorder = new MediaRecorder(stream);
-        audioChunks = []; // Reset audio chunks on new recording
+        mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
 
-        // Collect audio data when available
-        mediaRecorder.ondataavailable = event => {
-            if (event.data.size > 0) {
-                audioChunks.push(event.data);
-            }
-        };
-
-        // Handle recording stop and send audio to the backend
         mediaRecorder.onstop = async () => {
-            console.log("Recording completed, processing audio");
-            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            clearInterval(blinkInterval);
+            recordingStatus.textContent = '';
+
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
             const formData = new FormData();
-            formData.append('file', audioBlob, 'audio.wav');
+            formData.append('file', audioBlob, 'mic_audio.webm');
 
             try {
-                const response = await fetch('/upload_audio', {
-                    method: 'POST',
-                    body: formData,
-                });
+        const response = await fetch('/upload_audio', { method: 'POST', body: formData });
+        const data = await response.json();
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+        const transcribedText = data.transcribed || '';
+        const botReply = data.botReply || '';
 
-                const data = await response.json();
-                const message = data.message;
+        if (transcribedText) appendMessage(transcribedText, true);
+        if (botReply) appendMessage(botReply, false);
 
-                if (message) {
-                    appendMessage(message, true); // Display recognized text
-                    sendMessage(message); // Send recognized text to API
-                } else {
-                    appendMessage('No text recognized from the audio.', true);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                appendMessage('Voice message sent', true);
+    } 
+             catch (err) {
+                console.error(err);
+                appendMessage("Error sending voice message.", true);
             }
 
             audioChunks = [];
         };
 
-        // Start recording
         mediaRecorder.start();
-        micInput.classList.add('recording'); // Add recording style
-        console.log("Recording started");
-    } catch (error) {
-        console.error("Error accessing microphone:", error);
-        appendMessage("Error accessing the microphone.", true);
+        micInput.classList.add('recording');
+
+        // Blink "Recording..." text
+        let visible = true;
+        blinkInterval = setInterval(() => { recordingStatus.textContent = visible ? 'Recording...' : ''; visible = !visible; }, 500);
+
+    } catch (err) {
+        console.error(err);
+        appendMessage("Error accessing microphone.", true);
     }
 });
-//image
-//  const userImageUrl = "{{ url_for('templates', path='/user.jpg') }}";
-//  const botImageUrl = "{{ url_for('templates', path='/megan-profile.jpg') }}";
-// languageDropdown.addEventListener('change', function () {
-//     const selectedLanguage = languageDropdown.value;
+// Helper to send transcribed text to bot
+const sendMessageFromText = async (text) => {
+    try {
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ message: text })
+        });
 
-    
-//     alert(`You selected: ${selectedLanguage}`);
-    
-//     if (selectedLanguage === 'hi') {
-//         console.log('Loading Hindi translations...');
-//     } else if (selectedLanguage === 'bn') {
-//         console.log('Loading Bangla translations...');
-        
-//     }
-// });
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        appendMessage(data.reply, false);
+
+    } catch (error) {
+        console.error('Error:', error);
+        appendMessage('Hi! I am Megan. How can I help you with Finance?', false);
+    }
+};
