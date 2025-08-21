@@ -1,4 +1,3 @@
-
 package com.FinoStep.Fin;
 
 import java.io.IOException;
@@ -8,9 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Collections;
 import java.util.Map;
-
-import com.google.cloud.speech.v1.*;
-import com.google.protobuf.ByteString;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,6 +22,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import okhttp3.OkHttpClient;
 
 @Controller
 public class BotController {
@@ -49,23 +48,20 @@ public class BotController {
         }
 
         try {
-            // Construct a new, detailed prompt to guide the AI's behavior
             String fullPrompt = "You are Megan, a financial advisor of FinoStep. Your expertise is strictly in finance and money-related topics. " +
                                 "Respond to questions in a short and easy-to-understand language. " +
                                 "If the user asks for difference give the response in tabular form. " +
                                 "If a user asks a question that is not related to finance, politely decline and state that you are a financial advisor who can only help with money-related questions. " +
                                 "Do not answer non-financial questions. Here is the user's message: " + userMessage;
 
-            // Build the JSON payload with the new, customized prompt
             ObjectNode rootNode = objectMapper.createObjectNode();
             ArrayNode contentsNode = rootNode.putArray("contents");
             ObjectNode userContentNode = contentsNode.addObject();
             userContentNode.put("role", "user");
             ArrayNode partsArray = userContentNode.putArray("parts");
             ObjectNode textPart = partsArray.addObject();
-            textPart.put("text", fullPrompt); // Use the fullPrompt here instead of userMessage
+            textPart.put("text", fullPrompt);
 
-            // Create the HTTP request
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(GEMINI_API_URL + geminiApiKey))
@@ -73,12 +69,9 @@ public class BotController {
                     .POST(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(rootNode)))
                     .build();
 
-            // Send the request and get the response
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Check for successful response
             if (response.statusCode() == 200) {
-                // Parse the Gemini API response
                 JsonNode geminiResponse = objectMapper.readTree(response.body());
                 String botReply = geminiResponse.path("candidates").path(0).path("content").path("parts").path(0).path("text").asText();
                 return Collections.singletonMap("reply", botReply);
@@ -93,64 +86,120 @@ public class BotController {
         }
     }
 
-    /**
-     * Handles audio uploads from the microphone button.
-     * Note: This is a placeholder. It confirms audio receipt but does not perform
-     * speech-to-text conversion, as that requires a separate service.
-     */
     @PostMapping("/upload_audio")
     @ResponseBody
     public Map<String, String> uploadAudio(@RequestParam("file") MultipartFile file) {
         try {
-            // Validate audio file
             if (file.isEmpty()) {
                 return Collections.singletonMap("reply", "Audio file is empty.");
             }
 
-            
-            String transcribedText = speechToTextService.convertAudioToText(file.getBytes());
-            
+            String transcribedText = speechToTextService.convertAudioToText(file.getBytes(), file);
+
             if (transcribedText.isEmpty()) {
                 return Collections.singletonMap("reply", "No speech detected in the audio.");
             }
+             Map<String, String> botResponse = chat(Map.of("message", transcribedText));
 
-            
-            return chat(Collections.singletonMap("message", transcribedText));
+            return Map.of(
+            "transcribed", transcribedText,
+            "botReply", botResponse.get("reply")
+        );
 
-        } catch (IOException e) {
-            System.err.println("Speech-to-Text Error: " + e.getMessage());
-            return Collections.singletonMap("reply", "Error converting audio to text.");
-        } catch (Exception e) {
-            System.err.println("Unexpected Error: " + e.getMessage());
-            return Collections.singletonMap("reply", "An internal error occurred.");
-        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return Map.of("transcribed", "", "botReply", "An internal error occurred.");
     }
+}
 
     private static class speechToTextService {
-        public static String convertAudioToText(byte[] audioBytes) throws IOException {
-            try (SpeechClient speechClient = SpeechClient.create()) {
-                ByteString audioData = ByteString.copyFrom(audioBytes);
+        private static final String API_KEY = "571f2eea96c14a70b72947e682bab90b";
+        private static final String UPLOAD_URL = "https://api.assemblyai.com/v2/upload";
+        private static final String TRANSCRIBE_URL = "https://api.assemblyai.com/v2/transcript";
 
-                // Configure the recognition. Note: LINEAR16 is for raw, uncompressed WAV.
-                RecognitionConfig config = RecognitionConfig.newBuilder()
-                    .setEncoding(RecognitionConfig.AudioEncoding.LINEAR16)
-                    .setLanguageCode("en-US")
-                    .build();
+        private static final OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .build();
 
-                RecognitionAudio audio = RecognitionAudio.newBuilder()
-                    .setContent(audioData)
-                    .build();
+        public static String convertAudioToText(byte[] audioBytes, MultipartFile file) throws Exception {
+            // 1. Determine proper Content-Type
+            String contentType = "audio/webm";
 
-                // Send to Google Speech API
-                RecognizeResponse response = speechClient.recognize(config, audio);
-
-                StringBuilder transcript = new StringBuilder();
-                for (SpeechRecognitionResult result : response.getResultsList()) {
-                    transcript.append(result.getAlternatives(0).getTranscript()).append(" ");
-                }
-
-                return transcript.toString().trim();
+            if (file.getContentType() != null) {
+                contentType = file.getContentType();
             }
+
+            System.out.println("Uploading file: " + file.getOriginalFilename());
+            System.out.println("Content-Type: " + contentType);
+            System.out.println("Size: " + file.getSize());
+
+            // 2. Upload audio
+            // 2. Upload audio with dynamic MIME type
+            
+
+            okhttp3.RequestBody uploadBody = okhttp3.RequestBody.create(audioBytes, okhttp3.MediaType.parse(contentType));
+            okhttp3.Request uploadRequest = new okhttp3.Request.Builder()
+                    .url(UPLOAD_URL)
+                    .addHeader("authorization", API_KEY)
+                    .post(uploadBody)
+                    .build();
+
+
+            String uploadUrl;
+            try (okhttp3.Response response = client.newCall(uploadRequest).execute()) {
+                if (!response.isSuccessful())
+                    throw new IOException("Upload failed: " + response);
+                ObjectMapper mapper = new ObjectMapper();
+                uploadUrl = mapper.readTree(response.body().string()).get("upload_url").asText();
+            }
+
+            // 3. Request transcription
+            String json = "{ \"audio_url\": \"" + uploadUrl + "\" }";
+            okhttp3.RequestBody transcribeBody = okhttp3.RequestBody.create(json, okhttp3.MediaType.parse("application/json"));
+            okhttp3.Request transcribeRequest = new okhttp3.Request.Builder()
+                    .url(TRANSCRIBE_URL)
+                    .addHeader("authorization", API_KEY)
+                    .post(transcribeBody)
+                    .build();
+
+            String transcriptId;
+            try (okhttp3.Response response = client.newCall(transcribeRequest).execute()) {
+                if (!response.isSuccessful())
+                    throw new IOException("Transcription request failed: " + response);
+                ObjectMapper mapper = new ObjectMapper();
+                transcriptId = mapper.readTree(response.body().string()).get("id").asText();
+            }
+
+            // 4. Poll for result
+            String status, text = "";
+            while (true) {
+                okhttp3.Request pollRequest = new okhttp3.Request.Builder()
+                        .url(TRANSCRIBE_URL + "/" + transcriptId)
+                        .addHeader("authorization", API_KEY)
+                        .get()
+                        .build();
+
+                try (okhttp3.Response response = client.newCall(pollRequest).execute()) {
+                    if (!response.isSuccessful())
+                        throw new IOException("Polling failed: " + response);
+
+                    ObjectMapper mapper = new ObjectMapper();
+                    JsonNode result = mapper.readTree(response.body().string());
+                    status = result.get("status").asText();
+
+                    if ("completed".equals(status)) {
+                        text = result.get("text").asText();
+                        break;
+                    } else if ("error".equals(status)) {
+                        throw new IOException("Transcription failed: " + result.toString());
+                    }
+                }
+                Thread.sleep(3000);
+            }
+
+            return text;
         }
     }
 }
