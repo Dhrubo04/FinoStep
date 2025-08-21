@@ -94,26 +94,6 @@ We measure success through:
 
 ---
 
-## 📦 Installation & Setup
-**Requirements:** Python 3.9+, pip, PostgreSQL installed locally
-
-```bash
-# Clone the repository
-git clone https://github.com/Dhrubo04/FinoStep.git
-cd FinoStep
-
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate    # On Linux/Mac
-venv\Scripts\activate       # On Windows
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run FastAPI development server
-uvicorn main:app --reload
-```
----
 
 ## 💡 Value Proposition
 Empowers underserved communities with financial knowledge
