@@ -25,7 +25,7 @@ app.add_middleware(
 # app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 # templates = Jinja2Templates(directory="templates")
 templates = Jinja2Templates(directory=".")
-genai.configure(api_key="AIzaSyA1se35M8oYMigvXC9m1kxiW1xVJAwZ5WE") 
+genai.configure(api_key="XXXX") 
 model = genai.GenerativeModel("gemini-1.5-flash")
 generation_config = {
   "temperature": 0.1,
